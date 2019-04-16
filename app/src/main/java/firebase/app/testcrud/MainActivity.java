@@ -122,10 +122,10 @@ public class MainActivity extends AppCompatActivity {
         String app = appP.getText().toString();
 
         switch (item.getItemId()){
-            case R.id.icon_add:
-                if (nombre.equals("")){
+            case R.id.icon_add: {
+                if (nombre.equals("")) {
                     validacion();
-                }else {
+                } else {
                     Persona p = new Persona();
                     p.setUid(UUID.randomUUID().toString());
                     p.setNombre(nombre);
@@ -140,8 +140,8 @@ public class MainActivity extends AppCompatActivity {
                     limpiarcajas();
                 }
                 break;
-
-            case R.id.icon_save:
+            }
+            case R.id.icon_save: {
 
                 Persona p = new Persona();
                 p.setUid(personaSelected.getUid());
@@ -155,11 +155,17 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Guardar", Toast.LENGTH_LONG).show();
                 limpiarcajas();
                 break;
+            }
+            case R.id.icon_delete: {
 
-            case R.id.icon_delete:
+                Persona p = new Persona();
+                p.setUid(personaSelected.getUid());
+                databaseReference.child("Persona").child(p.getUid()).removeValue();
+
                 Toast.makeText(this, "Eliminar", Toast.LENGTH_LONG).show();
+                limpiarcajas();
                 break;
-
+            }
             default:
                 break;
         }
