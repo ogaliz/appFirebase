@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -35,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
+    Persona personaSelected;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +53,18 @@ public class MainActivity extends AppCompatActivity {
 
         inicializarFirebase();
         listarDatos();
+
+        /**Accedemos a la lista de personas*/
+        listV_personas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                personaSelected = (Persona)parent.getItemAtPosition(position);
+                nomP.setText(personaSelected.getNombre());
+                appP.setText(personaSelected.getApellido());
+                correoP.setText(personaSelected.getCorreo());
+                passwdP.setText(personaSelected.getPassword());
+            }
+        });
     }
 
     private void listarDatos() {
@@ -126,7 +142,18 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.icon_save:
+
+                Persona p = new Persona();
+                p.setUid(personaSelected.getUid());
+                p.setNombre(nomP.getText().toString().trim());
+                p.setApellido(appP.getText().toString().trim());
+                p.setCorreo(correoP.getText().toString().trim());
+                p.setPassword(passwdP.getText().toString().trim());
+
+                databaseReference.child("Persona").child(p.getUid()).setValue(p);
+
                 Toast.makeText(this, "Guardar", Toast.LENGTH_LONG).show();
+                limpiarcajas();
                 break;
 
             case R.id.icon_delete:
