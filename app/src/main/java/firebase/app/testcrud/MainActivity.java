@@ -83,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseApp.initializeApp(this);
         firebaseDatabase = FirebaseDatabase.getInstance();
+        /**Habilitamos la persistencia para que se puedan agragar datos sin la necesidad de conexión.*/
+        //firebaseDatabase.setPersistenceEnabled(true);
         databaseReference = firebaseDatabase.getReference();
     }
 
