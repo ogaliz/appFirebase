@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TestCrud</string>
+    <string name="logo_descriptor">Logo Austria</string>
 </resources>
