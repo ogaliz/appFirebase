@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
                      * Raiz > Nodo persona > Nodo UUID > Nombre + Apellido + Correo ... */
                     databaseReference.child("Persona").child(p.getUid()).setValue(p);
 
-                    Toast.makeText(this, "Agregar", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Agregado", Toast.LENGTH_LONG).show();
 
                     limpiarcajas();
                 }
@@ -188,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
 
                 databaseReference.child("Persona").child(p.getUid()).setValue(p);
 
-                Toast.makeText(this, "Guardar", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Guardado", Toast.LENGTH_LONG).show();
                 limpiarcajas();
                 break;
 
@@ -198,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
                 p.setUid(personaSelected.getUid());
                 databaseReference.child("Persona").child(p.getUid()).removeValue();
 
-                Toast.makeText(this, "Eliminar", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Registro eliminado", Toast.LENGTH_LONG).show();
                 limpiarcajas();
                 break;
             }
