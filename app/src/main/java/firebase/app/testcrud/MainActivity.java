@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         correoP = findViewById(R.id.txt_correoPersona);
         passwdP = findViewById(R.id.txt_passwordPersona);
 
-//      Código perteneciente a nuestro Spinner
+//      Inicio código dedicado al Spinner
         spinner = (Spinner) findViewById(R.id.depart_spinner);
 
         ArrayAdapter adapter = ArrayAdapter.createFromResource(
